@@ -1,2 +1,2 @@
-export {Mensage as ScreenMensage} from './SlideMensage'
-export {Profile as ScreenProfile} from './SlideProfile'
+export {Login as ScreenLogin} from './SlideLogin'
+export {Register as ScreenRegister} from './SlideRegister'
