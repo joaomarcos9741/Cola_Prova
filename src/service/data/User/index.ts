@@ -30,7 +30,7 @@ class UserData {
         return api.post<IResponseUser>('/register', data)
     }
     login(data: IUser) {
-        return api.post<IResponseUser>('/login', data)
+        return api.post<IAuthenticated>('/login', data)
     }
 }
 

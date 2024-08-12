@@ -8,7 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage"; "@react-na
 export interface IAuthContextData {
     signIn(credentials: IUser): Promise<void>
     signOut(): Promise<void>
-    user ?: IAuthenticated
+    user?: IAuthenticated
     loading: boolean
     setLoading: Dispatch<SetStateAction<boolean>>
 }
@@ -27,7 +27,7 @@ const AuthProvider = ({children}: IProvider) => {
     const signIn = useCallback(async ({email, password}: IUser) => {
         const response = await apiUser.login({email, password})
         const user = response.data
-        api.defaults.headers.common.Authorization = `Bearer ${user.create_at ? user: ""}`
+        api.defaults.headers.common.Authorization = `Bearer ${user.token ? user.token.token : ""}`
         setAuth({ ...user })
         await AsyncStorage.setItem("user", JSON.stringify({...user}))
     }, [])
