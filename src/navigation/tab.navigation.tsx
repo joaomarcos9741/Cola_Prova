@@ -13,7 +13,7 @@ export type MenuTabTypes = {
     navigation: MenuScreenNavigation
 }
 
-export function MenuTab() {
+export function TabNavigation() {
     const Tab = createBottomTabNavigator<MenuTabParam>();
     return (
         <Tab.Navigator
