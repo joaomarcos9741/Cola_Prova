@@ -21,6 +21,7 @@ export function Register({ navigation }: LoginTypes) {
         if (data?.email && data.name && data.password) {
             setLoading(true)
             try {
+                console.log(data)
                 const response = await apiUser.register(data)
                 Alert.alert(`${response.data.name} cadastrado!!!`)
                 navigation.navigate("Login")

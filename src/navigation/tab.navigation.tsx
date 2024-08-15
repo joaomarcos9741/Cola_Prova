@@ -1,8 +1,8 @@
 import { createBottomTabNavigator, BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import { ScreenPerfil, ScreenMensagem} from '../screens';
-import { Ionicons, FontAwesome, Octicons, AntDesign } from '@expo/vector-icons';
+import { Ionicons, FontAwesome, FontAwesome6, AntDesign } from '@expo/vector-icons';
 import { colors } from '../styles/GlobalStyles';
-import { MessageNavigation } from './message.navigation';
+
 
 type MenuTabParam = {
     Perfil: undefined
@@ -35,19 +35,11 @@ export function TabNavigation() {
 
             />
 
-            <Tab.Screen name="Mensagem" component={ScreenMensagem}
+
+            <Tab.Screen name='Mensagem' component={ScreenMensagem}
                 options={{
                     tabBarIcon: () => (
-                        <Ionicons name="home-outline" size={24} color="black" />
-                    )
-                }}
-
-            />
-
-            <Tab.Screen name='Mensagem' component={MessageNavigation}
-                options={{
-                    tabBarIcon: () => (
-                        <AntDesign name="message1" size={24} color={colors.white}/>
+                        <FontAwesome6 name="message" size={24} color="black" />
                     ),
                 }}  
             />

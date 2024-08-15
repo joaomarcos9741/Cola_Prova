@@ -10,6 +10,7 @@ import { MessageTypes } from "../../navigation/message.navigation";
 
 
 export function Mensagem({ navigation }: MessageTypes) {
+
     const [message, setMessage] = useState<IResponseMessage[]>([]);
     const { setLoading } = useAuth();
 
@@ -19,6 +20,9 @@ export function Mensagem({ navigation }: MessageTypes) {
             try {
                 const response = await apiMessage.index();
                 setMessage(response.data);
+
+
+                
             } catch (error) {
                 console.error(error);
             } finally {

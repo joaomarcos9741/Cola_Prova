@@ -24,10 +24,6 @@ export function Perfil() {
                         <Text style={styles.sociaisText}>https://www.instagram.com/</Text>
                     </View>
 
-                    <View>
-                        <FontAwesome5 name="likedin" size={24} color="black"/>
-                        <Text style={styles.sociaisText}>https://www.likedin.com/</Text>
-                    </View>
                 </View>
                 <ComponentBottonInterface  title="Sair" type="primary"
                     onPressI={async () => await signOut()}

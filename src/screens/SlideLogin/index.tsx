@@ -18,7 +18,9 @@ export function Login({ navigation }: LoginTypes) {
   async function handleSignIn() {
     if (data?.email && data.password) {
       setLoading(true)
+
       try {
+        console.log(data)
           await signIn(data)
       } catch (error) {
           const err = error as AxiosError
@@ -35,9 +37,6 @@ export function Login({ navigation }: LoginTypes) {
   }
   function handleChange(item: IAuthenticate) {
     setData({ ...data, ...item });
-  }
-  function handleHome() {
-    navigation.navigate('Login')
   }
   return (
     <View style={styles.container}>
@@ -65,7 +64,7 @@ export function Login({ navigation }: LoginTypes) {
             onChangeText={(i) => handleChange({ password: i })}
           />
         </View>
-        <BottonInterface title='Login' type='primary' onPressI={handleHome} />
+        <BottonInterface title='Login' type='primary' onPressI={handleSignIn} />
         <BottonInterface title='Cadastrar-se' type='third' onPressI={handleRegister} />
       </KeyboardAvoidingView>
     </View>
