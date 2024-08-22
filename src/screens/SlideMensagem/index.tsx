@@ -11,47 +11,44 @@ import { MessageTypes } from "../../navigation/message.navigation";
 
 export function Mensagem({ navigation }: MessageTypes) {
 
-    const [message, setMessage] = useState<IResponseMessage[]>([]);
-    const { setLoading } = useAuth();
+    const [message, setMessages] = useState<IResponseMessage[]>([]);
+
 
     useEffect(() => {
         async function loadMessage() {
-            setLoading(true);
             try {
                 const response = await apiMessage.index();
-                setMessage(response.data);
-
-
-                
+                setMessages(response.data);
             } catch (error) {
                 console.error(error);
-            } finally {
-                setLoading(false);
             }
         }
         loadMessage();
-    }, [setLoading]);
+    }, []);
 
     interface itemMessage {
         item: IResponseMessage;
     }
 
-    const renderItem = ({ item }: itemMessage) => (
-        <View>
-            <Text style={styles.itemText}>Título: {item.title}</Text>
-            <Text style={styles.itemText}>Mensagem: {item.message}</Text>
-        </View>
-    );
-
+    const renderItem = ({ item }: itemMessage) => {
+        return (
+            <View>
+                <Text style={styles.itemText}>Título: {item.title}</Text>
+                <Text style={styles.itemText}>Mensagem: {item.message}</Text>
+            </View>
+        )
+    };
     return (
-        <View style={styles.item}>
+        <View style={styles.conteiner}>
+            <View style={styles.item}>
             {message.length > 0 && (
-                <FlatList 
+                <FlatList
                     data={message}
                     renderItem={renderItem}
                     keyExtractor={(item) => String(item.id)}
                 />
             )}
+            </View>
             <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate("CadM")}>
                 <AntDesign name="pluscircle" size={48} color={colors.secondary} />
             </TouchableOpacity>

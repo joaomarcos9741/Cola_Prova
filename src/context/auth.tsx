@@ -47,7 +47,7 @@ const AuthProvider = ({children}: IProvider) => {
 
         if (user) {
             const userParse = JSON.parse(user) as IAuthenticated
-            if (isAfter(parseISO(userParse.token.expire_at), new Date())) {
+            if (isAfter(parseISO(userParse.token.expires_at), new Date())) {
                 api.defaults.headers.common.Authorization = `Bearer ${userParse.token}`
                 setAuth({...userParse})
                 return true

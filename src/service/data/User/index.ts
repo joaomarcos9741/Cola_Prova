@@ -20,7 +20,7 @@ export interface IAuthenticated {
     user: IResponseUser
     token: {
         token: string
-        expire_at: string
+        expires_at: string
 
     }
 }
