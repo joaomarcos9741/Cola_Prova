@@ -6,6 +6,7 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 import { AntDesign } from '@expo/vector-icons';
 import * as MediaLibrary from 'expo-media-library';
 import { ComponentLoading } from "../../components";
+import { colors } from "../../styles/GlobalStyles";
 
 export function Camera() {
     const [facing, setFacing] = useState<CameraType>('back');
@@ -36,7 +37,46 @@ export function Camera() {
     async function takePicture() {
             const picture = await ref.current?.takePictureAsync({ imageType: 'jpg', quality: 0})
             setPhoto(picture)
+    }
+    }
+
+    async function savePhoto() {
+        if (permissionMedia!.status !== 'granted') {
+            await requestPermissionMedia();
         }
+        const asset = await MediaLibrary.createAssetAsync(photo!.uri)
+        MediaLibrary.createAlbumAsync("Imagem", asset, false)
+        Alert.alert("Imagem salva com sucesso")
+    }
+
+    if (photo) {
+        return (
+            <ImageBackground source={{ uri: photo.uri }} style={styles.camera}>
+                <View style={styles.headerSave}>
+                    <TouchableOpacity onPress={() => setPhoto(undefined)}>
+                        <AntDesign name="back" size={70} color={colors.black} />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={savePhoto}>
+                        <AntDesign name="save" size={70} color={colors.black} />
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
+        )
+
+        return (
+            <View style={styles.container}>
+                <CameraView style={styles.camera} facing={facing} ref={ref}>
+                  <View style={styles.headerCamera}>
+                    <TouchableOpacity onPress={toggleCameraFacing}>
+                        <AntDesign name="retweet" size={70} color={colors.black} />
+                    </TouchableOpacity>
+                   </View>
+                   <View style={styles.footerCamera}>
+                        <TouchableOpacity onPress={takePicture} style={styles.ball} />
+                   </View>
+                </CameraView>
+            </View>
+        );
     }
 
 }

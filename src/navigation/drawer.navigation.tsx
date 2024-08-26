@@ -2,9 +2,12 @@ import { createDrawerNavigator, DrawerNavigationProp } from "@react-navigation/d
 import { colors } from "../styles/GlobalStyles";
 import { Ionicons } from "@expo/vector-icons";
 import { TabNavigation } from "./tab.navigation";
+import { SlideCamera } from "../screens";
+
 
 type DraWerParamList = {
     Tab: undefined
+    Camera: undefined
 }
 
 type DrawerScreenNavigationProp = DrawerNavigationProp<DraWerParamList, "Tab">
@@ -34,6 +37,17 @@ export function DrawerNavigation() {
                     ),
                 }}
             />
+
+            <Drawer.Screen name='Camera' component={SlideCamera}
+                options={{
+                    drawerLabel: 'Camera',
+                    headerTitle: 'Camera',
+                    drawerIcon: () => (
+                        <Ionicons name="camera" size={24} color={colors.white} />
+
+                    ),
+                }}
+            />  
 
         </Drawer.Navigator>
     )
