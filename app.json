@@ -26,17 +26,23 @@
     "plugins":[
       [
         "expo-camera", {
-          "cameraPermission": "Allow $(PRODUCT_NAME) acessar a sua câmera",
-          "microphonePermission": "Allow $(PRODUCT_NAME) acessar seu microphone",
+          "cameraPermission": "Permite $(PRODUCT_NAME) acessar a sua câmera",
+          "microphonePermission": "Permita $(PRODUCT_NAME) acessar seu microphone",
           "recordAudioAndroid": true
         }
       ],
       [
         "expo-media-library",
         {
-          "photosPermission": "Allow $(PRODUCT_NAME) acessar suas fotos.",
-          "savePhotosPermission": "Allow $(PRODUCT_NAME) salvar suas fotos.",
+          "photosPermission": "Permita $(PRODUCT_NAME) acessar suas fotos.",
+          "savePhotosPermission": "Permita $(PRODUCT_NAME) salvar suas fotos.",
           "isAccessMediaLocationEnabled": true
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O aplicativo acessa suas fotos para que você possa compartilhá-las com seus amigos"
         }
       ]
     ]

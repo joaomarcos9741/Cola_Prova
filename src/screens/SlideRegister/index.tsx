@@ -9,6 +9,14 @@ import { apiUser } from '../../service/data';
 import { AxiosError } from 'axios';
 import { useAuth } from '../../hook/auth';
 
+export interface IError {
+    errors: {
+        rule: string
+        field: string
+        message: string
+    } []
+}
+
 export interface IRegister {
     name?: string
     email?: string
@@ -27,8 +35,8 @@ export function Register({ navigation }: LoginTypes) {
                 navigation.navigate("Login")
             } catch (error) {
                 const err = error as AxiosError
-                const msg = err.response?.data as string 
-                Alert.alert(msg)
+                const msg = (err.response?.data as IError)
+                Alert.alert(msg.errors.reduce((total, atual) => total + atual.message, ''))
             }
             setLoading(false)
         } else {

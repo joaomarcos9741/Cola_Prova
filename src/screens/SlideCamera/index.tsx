@@ -1,8 +1,7 @@
-import { CameraView, CameraType, useCameraPermissions, CameraCapturedPicture} from "expo-camera";
+import { CameraView, CameraType, useCameraPermissions, CameraCapturedPicture } from "expo-camera";
 import { useRef, useState } from "react";
-import { Button, Text, TouchableOpacity, View, Alert, ImageBackground} from "react-native";
+import { Button, Text, TouchableOpacity, View, Alert, ImageBackground } from "react-native";
 import { styles } from "./styles";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { AntDesign } from '@expo/vector-icons';
 import * as MediaLibrary from 'expo-media-library';
 import { ComponentLoading } from "../../components";
@@ -15,15 +14,15 @@ export function Camera() {
     const ref = useRef<CameraView>(null)
     const [photo, setPhoto] = useState<CameraCapturedPicture>()
 
-    if(!permission) {
+    if (!permission) {
         return < ComponentLoading />
     }
 
-    if(!permission.granted) {
+    if (!permission.granted) {
         return (
             <View style={styles.container}>
                 <Text style={styles.message}>Você precisa dar permissão para acesso da Camera</Text>
-                <Button onPress={requestPermission} title="grant permission"/>
+                <Button onPress={requestPermission} title="grant permission" />
             </View>
         );
     }
@@ -34,10 +33,9 @@ export function Camera() {
 
     async function takePicture() {
         if (ref.current) {
-    async function takePicture() {
-            const picture = await ref.current?.takePictureAsync({ imageType: 'jpg', quality: 0})
-            setPhoto(picture)
-    }
+                const picture = await ref.current?.takePictureAsync({ imageType: 'jpg', quality: 0 })
+                setPhoto(picture)
+        }
     }
 
     async function savePhoto() {
@@ -62,22 +60,21 @@ export function Camera() {
                 </View>
             </ImageBackground>
         )
-
-        return (
-            <View style={styles.container}>
-                <CameraView style={styles.camera} facing={facing} ref={ref}>
-                  <View style={styles.headerCamera}>
+    }
+    return (
+        <View style={styles.container}>
+            <CameraView style={styles.camera} facing={facing} ref={ref}>
+                <View style={styles.headerCamera}>
                     <TouchableOpacity onPress={toggleCameraFacing}>
                         <AntDesign name="retweet" size={70} color={colors.black} />
                     </TouchableOpacity>
-                   </View>
-                   <View style={styles.footerCamera}>
-                        <TouchableOpacity onPress={takePicture} style={styles.ball} />
-                   </View>
-                </CameraView>
-            </View>
-        );
-    }
+                </View>
+                <View style={styles.footerCamera}>
+                    <TouchableOpacity onPress={takePicture} style={styles.ball} />
+                </View>
+            </CameraView>
+        </View>
+    );
+}
 
-}
-}
+
