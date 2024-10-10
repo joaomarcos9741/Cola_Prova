@@ -6,3 +6,4 @@ export { CadMessage as ScreenCadMessage } from './CadMensagem'
 export { Camera as SlideCamera } from './SlideCamera'
 export { Imagens as ScreenImagems } from './SlideImagem'
 export { QrCode as ScreenQrCode } from "./SlideQrCode"
+export { LocationMap as ScreenLocation} from "./LocationMap"
